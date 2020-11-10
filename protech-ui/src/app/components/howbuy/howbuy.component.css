@@ -1,0 +1,46 @@
+.main-container{
+  /* margin-top: 50px; */
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+}
+
+.container_instructions {
+  /* margin-top: px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.container_instructions h6{
+  font-size: 1.8rem;
+  margin-top: 10px;
+  color: #676767;
+}
+
+.imagen{
+  /* background-image: url(/assets/img/comocomprar.png); */
+  width: 100%;
+  height: auto;
+  /* background-size: contain;
+  background-repeat: no-repeat; */
+}
+/* .container_instructions-items */
+@media only screen and (max-width: 1000px){
+
+  .container_instructions h6 {
+    font-size: 1.3rem;
+  }
+
+}
+
+@media only screen and (max-width: 500px){
+  .logo{
+    display: none;
+  }
+
+  .container_instructions h6 {
+    font-size: 1rem;
+  }
+
+}

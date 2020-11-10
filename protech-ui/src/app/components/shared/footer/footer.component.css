@@ -1,0 +1,107 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+footer {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    background: rgb(26, 42, 64);
+    color: rgb(255, 255, 255);
+    bottom: 0;
+    right: 0;
+    z-index: 55555;
+}
+
+.row {
+    margin-top: 20px;
+    display: flex;
+}
+
+.row label {
+    margin-top: 2px;
+    margin-left: 15px;
+    color: #C7C7C7;
+}
+
+.fab,
+.far {
+    font-size: 25px;
+}
+
+.fa-whatsapp {
+    color: #00BB2D;
+}
+
+.fa-facebook-square {
+    color: #3B5998;
+}
+
+.fa-twitter {
+    color: #00ACEE;
+}
+
+.container-footer {
+    margin-bottom: 10px;
+}
+
+.copyright {
+    color: #C7C7C7;
+}
+
+.copyright a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.copyright h5{
+  font-size: 1rem ;
+  text-align: center;
+}
+
+.information a {
+    text-decoration: none;
+    color: #C7C7C7;
+}
+
+.information .infomacion-item a{
+  text-align: center;
+}
+
+/* Footer */
+.iconos{
+  margin-bottom: 20px;
+}
+
+h3{
+  font-size: 1.3rem;
+}
+
+#contenedor-horario{
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media screen and (max-width: 600px) {
+
+    #iconosId{
+      display: flex;
+      justify-content: center;
+    }
+
+    #iconosId h3{
+      text-align: center;
+    }
+
+    #contenedor-horario{
+      justify-content: center;
+    }
+
+    #contenedor-horario h3,p{
+      text-align: center;
+    }
+}

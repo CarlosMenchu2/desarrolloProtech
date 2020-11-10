@@ -1,0 +1,88 @@
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+</head>
+
+<div class="header_main">
+    <div class="header_main-top">
+        <ul *ngIf="!isLogged" class="header_main-list">
+            <li>
+                <a (click)="openInicioSesion()">Inicia Sesión</a>
+            </li>
+            <li>
+                <a (click)="openRegistro()">Registrarse</a>
+            </li>
+        </ul>
+        <div *ngIf="isLogged" class="sesion-icon">
+            <div class="dropdown">
+                <i class="fas fa-user fa-lg dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" (click)="HistorialLocation()">Historial de compras</a>
+                    <a class="dropdown-item" (click)="onLogOut()">Cerrar sesion</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header_main-bottom">
+        <div class="header_main-container">
+            <div class="header_main_logo">
+                <a [routerLink]="['/home']" class="logo">
+                    <img src="assets/img/image.png" alt="">
+                </a>
+            </div>
+            <div class="header_main-search">
+                <form action="">
+                    <input type="search" placeholder="Buscar" class="input">
+                </form>
+                <i class="fas fa-search logo-buscar"></i>
+            </div>
+            <div class="header_carrito_main">
+                <div class="header_carrito">
+                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                    <h5>0</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main_menu">
+        <nav class="navbar navbar-expand-lg  navbar-custom ">
+            <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+            <button class="navbar-toggler  custom-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav justify-content-between w-100">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Productos
+            </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <div *ngFor="let categoria of categorias;">
+                                <a class="dropdown-item" [routerLink]="['/catalogo',categoria._id]">
+                  {{categoria.nombre}}
+                </a>
+                                <div class="dropdown-divider"></div>
+                            </div>
+                            <!-- <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a> -->
+                        </div>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" [routerLink]="['/nosotros']">Nosotros <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/comprar']">¿Cómo comprar?</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/contacto']">Contactenos</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/brands.min.js" integrity="sha512-vPKAgm60IRSwzDO45UDVa3woLa3hmhFW9RVf8Ue2rBlkow56e6zmiBjTmHbyR7iT3Z2AccKK/bA3PNjiOp3Vjg==" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+</div>

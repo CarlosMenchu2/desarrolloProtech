@@ -1,0 +1,37 @@
+<div class="container alto">
+  <div class="container-formulario">
+    <div class="container_title">
+      <h5>Contacto</h5>
+    </div>
+    <form action="" [formGroup]="formContacto">
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre1" class="form-control" formControlName="nombre" placeholder="Ingrese su nombre">
+        <div *ngIf="formContacto.get('nombre').touched && formContacto.get('nombre').errors ">
+          <small *ngIf="formContacto.get('nombre').hasError('required')" class="text-danger">Campo Requerido</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="">Telefono</label>
+        <input type="text" id="telefono1" class="form-control" formControlName="telefono" placeholder="Ingrese su telefono">
+        <div *ngIf="formContacto.get('telefono').touched && formContacto.get('correo').errors ">
+          <small *ngIf="formContacto.get('telefono').hasError('required')" class="text-danger">Campo Requerido</small>
+          <small *ngIf="formContacto.get('telefono').hasError('hasNumber')" class="text-danger">Solo numeros en este campo</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="correo">Correo</label>
+        <input type="text" id="correo" class="form-control" formControlName="correo" placeholder="Ingrese su correo">
+        <div *ngIf="formContacto.get('correo').touched && formContacto.get('correo').errors ">
+          <small *ngIf="formContacto.get('correo').hasError('required')" class="text-danger">Campo Requerido</small>
+          <small *ngIf="formContacto.get('correo').hasError('email')" class="text-danger">Ingrese un correo valido</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="comentario">Comentario</label>
+        <textarea name="" id="comentario" class="form-control" cols="30" rows="10" placeholder="Comentarios"></textarea>
+      </div>
+      <button class="button" (click)="enviarCorreo()">Enviar mensaje </button>
+    </form>
+  </div>
+</div>

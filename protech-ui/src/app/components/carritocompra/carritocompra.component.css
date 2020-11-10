@@ -1,0 +1,366 @@
+body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+
+/* TITULO -------------------------------------------------------------*/
+
+.titleCC {
+    text-align: center;
+    display: inline-block;
+}
+
+
+/* COLORES -------------------------------------------------------------*/
+
+.colorGray {
+    color: #707070
+}
+
+.colorBlue {
+    color: #010235
+}
+
+
+/* CONTAINERS -------------------------------------------------------------*/
+
+.container-img {
+    border-radius: 0%;
+    width: 120px;
+    border-top: none;
+    height: 100px;
+}
+
+.container-titulos {
+    height: 45px;
+    border-radius: 0%;
+    text-align: center;
+}
+
+.container-productos {
+    border-top: none;
+    width: 250px;
+    height: 100px;
+    border-radius: 0%;
+    min-width: 250px;
+    max-width: 250px;
+}
+
+.container-dinero {
+    border-top: none;
+    border-left: none;
+    width: 120px;
+    border-radius: 0px;
+    height: 100px;
+    text-align: center;
+    justify-items: center;
+}
+
+
+/* IMAGENES -------------------------------------------------------------*/
+
+.imagenes {
+    width: auto;
+    height: auto;
+    max-width: 80px;
+    max-height: 80px;
+}
+
+.recorte1 {
+    clip-path: inset(0 50% 0 0);
+}
+
+.recorte2 {
+    clip-path: inset(0 0 0 50%);
+    margin-left: -145px;
+}
+
+.imgCompra {
+    margin-left: 60px;
+    display: inline-block;
+    float: left;
+    width: 120px;
+}
+
+
+/* INPUT -------------------------------------------------------------*/
+
+.in {
+    background-color: #ffffff;
+    height: 37px;
+    border: 1px solid #1A2A40;
+    text-align: center;
+    display: inline;
+    margin: 0;
+    padding-top: 0px;
+}
+
+.in::-webkit-inner-spin-button,
+.in::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.in:focus {
+    outline: none;
+}
+
+
+/* BOTONES -------------------------------------------------------*/
+
+.botonA {
+    background-color: #1A2A40;
+    color: #ffffff;
+}
+
+.botonA:hover {
+    background-color: #263c58;
+    color: #ffffff;
+}
+
+.botonmm {
+    background-color: #1A2A40;
+    color: #ffffff;
+    width: 25px;
+    text-align: center;
+    border-radius: 0%;
+    display: inline;
+}
+
+.botonmm:hover {
+    background-color: #263c58;
+    color: #ffffff;
+}
+
+.btnComprar {
+    background-color: #1A2A40;
+    color: #ffffff;
+    text-align: center;
+    border-radius: 3px;
+    display: inline;
+}
+
+.btnComprar:hover {
+    background-color: #263c58;
+    color: #ffffff;
+}
+
+
+/* Botón eliminar */
+
+.boton {
+    margin-left: 1px;
+    background-color: #ffffff;
+    border: 1px solid #707070;
+    display: inline;
+}
+
+.boton:hover {
+    background-color: #d9534f;
+    border: 1px solid #d9534f;
+    color: #ffffff;
+}
+
+.fa-trash-alt {
+    color: #707070;
+}
+
+.boton:hover .fa-trash-alt {
+    color: #ffffff;
+}
+
+
+/* Encabezado y pie de tabla */
+
+.encpie {
+    background-color: #474747;
+    color: rgb(230, 230, 230);
+}
+
+
+/* Arreglos a la tabla */
+
+.padd1 {
+    max-width: 1000px;
+    float: right;
+    margin-right: 100px;
+    display: inline-block;
+}
+
+.cantGroup {
+    min-width: 150px;
+}
+
+.nombre {
+    min-width: 270px;
+}
+
+.subt {
+    min-width: 120px;
+}
+
+
+/* Tabla resumen */
+
+.tablaResumen {
+    width: 315px;
+    float: right;
+    margin-right: 100px;
+    text-align: center;
+}
+
+
+/* RESPONSIVE------------------------------------------------------------- */
+
+@media screen and (max-width: 600px) {
+    .imagenes {
+        width: auto;
+        height: auto;
+        max-width: 60px;
+        max-height: 60px;
+    }
+    .container-productos {
+        width: 200px;
+        min-width: 200px;
+    }
+    .tablaResumen {
+        width: 270px;
+        float: left;
+        margin-left: 5px;
+        margin-right: 5px;
+        text-align: center;
+    }
+    .padd1 {
+        max-width: 1000px;
+        float: none;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .imgCompra {
+        display: none;
+    }
+    .titletxt {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 600px) and (max-width: 1000px) {
+    .imagenes {
+        width: auto;
+        height: auto;
+        max-width: 60px;
+        max-height: 60px;
+    }
+    .container-productos {
+        width: 200px;
+        min-width: 200px;
+    }
+    .tablaResumen {
+        width: 270px;
+        float: right;
+        margin-left: 5px;
+        margin-right: 5px;
+        text-align: center;
+    }
+    .padd1 {
+        max-width: 1000px;
+        float: none;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .imgCompra {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1200px) {
+    .imagenes {
+        width: auto;
+        height: auto;
+        max-width: 60px;
+        max-height: 60px;
+    }
+    .container-productos {
+        width: 200px;
+        min-width: 200px;
+    }
+    .tablaResumen {
+        width: 270px;
+        float: right;
+        margin-right: 50px;
+        text-align: center;
+    }
+    .padd1 {
+        float: right;
+        max-width: 750px;
+        margin-right: 50px;
+    }
+    .imgCompra {
+        display: inline-block;
+    }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1300px) {
+    .padd1 {
+        float: right;
+        max-width: 900px;
+    }
+}
+
+
+/*Select Styles*/
+
+
+/* .select-css {
+    display: block;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    font-weight: 400;
+    color: #444;
+    line-height: 1.3;
+    padding: .4em 1.4em .3em .8em;
+    width: 60px;
+    max-width: 100%;
+    height: 30px;
+    box-sizing: border-box;
+    margin: 0;
+    border: 1px solid #aaa;
+    box-shadow: 0 1px 0 1px rgba(0, 0, 0, .03);
+    border-radius: .3em;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #cccccc;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'), linear-gradient(to bottom, #ffffff 0%, #f7f7f7 100%);
+    background-repeat: no-repeat, repeat;
+    background-position: right .7em top 50%, 0 0;
+    background-size: .65em auto, 100%;
+    display: inline-block;
+    padding-top: 2px;
+    color: #929292;
+    cursor: pointer;
+}
+
+.select-css::-ms-expand {
+    display: none;
+}
+
+.select-css:hover {
+    border-color: #888;
+}
+
+.select-css:focus {
+    border-color: #aaa;
+    box-shadow: 0 0 1px 3px #929292;
+    box-shadow: 0 0 0 3px -moz-mac-focusring;
+    color: rgb(85, 85, 85);
+    outline: none;
+}
+
+.select-css option {
+    font-weight: normal;
+} */
+
+
+/*Select Styles End*/

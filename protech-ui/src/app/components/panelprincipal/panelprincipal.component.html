@@ -1,0 +1,49 @@
+<body>
+
+    <input type="checkbox" id="check">
+
+    <header>
+        <label for="check">
+            <i class="fas fa-bars" id="sidebar_btn"></i>
+        </label>
+        <div class="left_area">
+            <h3>Pro-tech </h3>
+        </div>
+        <div class="right_area">
+            <a href="#" class="logout_btn">Logout</a>
+        </div>
+    </header>
+    <div class="espacioArriba"></div>
+    <!--mobile navigation bar start-->
+    <div class="mobile_nav">
+        <div class="nav_bar">
+            <img src="" class="mobile_profile_image" alt="">
+            <i class="fa fa-bars nav_btn" (click)="switchMenu()"></i>
+        </div>
+        <div id="changeOption" class="mobile_nav_items">
+            <a href="#" [routerLink]="['/inventario']"><i class="fas fa-boxes"></i><span>Inventario</span></a>
+            <a href="#" [routerLink]="['/reportes']"><i class="fas fa-clipboard-list"></i><span>Reportes</span></a>
+            <a href="#"><i class="fas fa-users"></i><span>Usuarios</span></a>
+            <a href="#" [routerLink]="['/configuraciones'] "><i class="fas fa-sliders-h"></i><span>Configuraciones</span></a>
+        </div>
+    </div>
+    <!--mobile navigation bar end-->
+    <!--sidebar start-->
+    <div class="sidebar">
+
+        <!-- <div class="profile_info">
+            <img src="/assets/img/razer.png" class="profile_image" alt="">
+            <h4>NombreAdmin</h4>
+        </div> -->
+        <a href="#" [routerLink]="['/inventario']"><i class=" fas fa-boxes "></i><span>Inventario</span></a>
+        <a href="# " [routerLink]="['/reportes']"><i class="fas fa-clipboard-list "></i><span>Reportes</span></a>
+        <a href="# "><i class="fas fa-users "></i><span>Usuarios</span></a>
+        <a href="# " [routerLink]="[ '/configuraciones'] "><i class="fas fa-sliders-h "></i><span>Configuraciones</span></a>
+
+    </div>
+    <!--sidebar end-->
+
+    <!--  <div class="content ">
+
+    </div> -->
+</body>

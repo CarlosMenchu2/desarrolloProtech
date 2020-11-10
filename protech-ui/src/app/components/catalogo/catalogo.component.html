@@ -1,0 +1,47 @@
+<body class="contenedor_general">
+    <div class="contenedor_filtros">
+
+        <aside class="filtros">
+
+            <h4> <b>Filtrar por:</b> </h4>
+            <p>Marca:</p>
+            <select class="fullWidth" #marca (change)='setMarca(marca.value)'>
+                <option></option>
+                <option *ngFor="let m of arregloMarcas" [value]="m._id">
+                    {{m.nombre}}
+                </option>
+            </select>
+            <p></p>
+            <p>Categoria:</p>
+            <select class="fullWidth" #categoria (change)='setCategoria(categoria.value)'>
+                <option></option>
+                <option *ngFor="let c of arregloCategorias" [value]="c._id">
+                    {{c.nombre}}
+                </option>
+            </select>
+            <p></p>
+            <button class="btn_Filtros fullWidth" (click)="aplicarFiltros()">Enviar</button>
+
+        </aside>
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-4" *ngFor="let producto of arregloProductos; let i = index">
+                <app-tarjetas-productos [producto]="producto" [index]="i"></app-tarjetas-productos>
+            </div>
+        </div>
+
+        <div class="paginacion">
+            <ul>
+                <li *ngFor="let numeroPagina of arregloPaginas;" (click)="aplicarFiltros(numeroPagina)">
+                    <a>{{numeroPagina}}</a>
+                </li>
+            </ul>
+
+
+        </div>
+
+    </div>
+</body>

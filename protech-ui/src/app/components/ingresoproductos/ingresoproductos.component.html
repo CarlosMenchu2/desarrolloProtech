@@ -1,0 +1,387 @@
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/fontawesome.min.css">
+</head>
+
+<div class="centrar">
+
+    <!--Imágenes al principio del módulo-->
+    <div class="row">
+        <div class="col-3">
+            <img src="assets/img/inventory.png" alt="" class="fijarInventario">
+            <label class="col-1" style="font-size:3.0vw">
+                <strong>Inventario</strong></label>
+        </div>
+        <div class="col-2">
+
+        </div>
+        <div class="col-7">
+            <img src="assets/img/Componente 20 – 1@2x.png" alt="" class="fijarMarco">
+        </div>
+    </div>
+    <!--Pestañas-->
+    <nav>
+        <div style="margin-top: 15px;" class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-link active negro" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">
+                <img src="assets/img/inventory.png" alt="" width="20px" height="20px" style="margin-top: -5px;"> Ingresar producto</a>
+            <a class="nav-link negro" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">
+                <img src="assets/img/list.png" alt="" width="20px" height="20px" style="margin-top: -5px;"> Visualizar producto</a>
+        </div>
+    </nav>
+    <!--Ingreso de productos-->
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div style="margin-top: 35px;">
+                <form id="Datos" class="was-validated">
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input [(ngModel)]="campos[0]" maxlength="45" name="producto" type="text" class="form-control" id="nombreProducto" placeholder="Nombre del producto" required #producto>
+                                <div class="invalid-feedback">Campo incompleto</div>
+                            </div>
+                            <div class="form-group">
+                                <textarea [(ngModel)]="campos[1]" rows=2 maxlength="200" name="descripcion" type="text" class="form-control" id="descripcion" placeholder="Descripción" required #descripcion></textarea>
+                                <div class="invalid-feedback">Campo incompleto</div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-6">
+                                    <select [(ngModel)]="campos[2]" name="marca" id="marca" class="custom-select" required #marca>
+                                        <option value=""> Marca</option>
+                                        <option *ngFor="let marca of marcas;">{{ marca.nombre }}</option>
+                                    </select>
+                                    <div class="invalid-feedback">Seleccione una marca</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <select [(ngModel)]="campos[3]" name="categoria" id="categoria" class="custom-select" required #categoria>
+                                        <option value="">Categoría</option>
+                                        <option *ngFor="let categoria of categorias;">{{ categoria.nombre }}</option>                                    
+                                    </select>
+                                    <div class="invalid-feedback">Seleccione una categoría</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input [(ngModel)]="campos[4]" name="precio" type="text" pattern="[0-9]+(\.[0-9][0-9]?)?" title="Ingrese sólo números (si usa decimales que sean 2 como máximo)" step="0.01" min="0" class="form-control" id="precioVenta" placeholder="Precio de venta (Q.)"
+                                    required #precio>
+                                <div class="invalid-feedback">Campo incompleto o mal llenado (use 2 decimales o enteros)</div>
+                            </div>
+                            <div class="form-group">
+                                <input [(ngModel)]="campos[5]" name="existencia" name="existencia" type="text" pattern="[0-9]*" min="0" class="form-control" id="existencia" placeholder="Existencia" required #existencia>
+                                <div class="invalid-feedback">Campo incompleto o mal llenado (use enteros solamente)</div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="disponible" name="radio-stacked" value="disponible" (click)="manipularBRadio(1)" required #disponible>
+                                        <label class="custom-control-label" for="disponible">Disponible</label>
+                                        <div class="invalid-feedback">Seleccione la opción disponible o descontinuado</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="descontinuado" name="radio-stacked" value="descontinuado" (click)="manipularBRadio(2)" required #descontinuado>
+                                        <label class="custom-control-label" for="descontinuado">Descontinuado</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <div class="form-group form-check">
+                                        <input name="descuento" type="checkbox" class="form-check-input" (click)="asignarValor()" id="cbDescuento" #descuento>
+                                        <label class="form-check-label" for="exampleCheck1">En descuento</label>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input [(ngModel)]="campos[6]" name="inputDescuento" pattern="[0-9]{1,2}" *ngIf="booleano" id="inputDescuento" type="text" class="form-control" placeholder="% descuento" #inputDescuento required>
+                                    <div class="invalid-feedback">Ingrese un número de uno o dos dígitos</div>
+                                </div>
+                            </div>
+                            <button *ngIf="especificaciones.length > 0 && bandera()" class="btn btn-secondary" (click)="ingresarProducto()">Ingresar producto</button>
+                        </div>
+                        <div class="col-md-3">
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row ">
+                                <div class="col-md-4 responsive-tarjetas">
+                                    <div class="card">
+                                        <img [src]="urls[0]" class="fijarTarjetas" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 responsive-tarjetas">
+                                    <div class="card">
+                                        <img [src]="urls[1]" class="fijarTarjetas" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 responsive-tarjetas">
+                                    <div class="card">
+                                        <img [src]="urls[2]" class="fijarTarjetas" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="margin-top: 15px;" class="form-group">
+                                <input type="file" accept=".png, .jpg, .jpeg" class="form-control-file" id="image" multiple (change)="detectFiles($event); asignarImagenes($event)">
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="form-group">
+                                <p>El botón para ingresar el producto se activa una vez que se ha ingresado una especificación ({{ especificaciones.length }} especificaciones) y ningún campo esté con marco rojo.
+                                </p>
+                                <div class="form-group row">
+                                    <div class="col-md-10">
+
+                                        <input pattern="[0-9a-zA-ZÀ-ÿ\s\u00f1\u00d1:.;!#$%&/()=?¡¿/*+>_-]*" title="Ingrese letras, números y SOLO los caracteres especiales especificados: :.;!#$%&/()=?¡¿/*-+>_ (no ingrese comas, importante)" class="form-control especificacion" id="especificacion"
+                                            placeholder="Especificación" #especificacion>
+                                        <div class="invalid-feedback">Campo incompleto</div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="button" class="btn btn-dark" (click)="obtenerEspecificacion()">Agregar</button>
+                                    </div>
+                                </div>
+                                <p *ngIf="especificaciones.length > 0">
+                                    Especificación {{indiceEspecificaciones + 1}}: <br> {{ especificaciones[indiceEspecificaciones]}}
+                                </p>
+                                <p *ngIf="especificaciones.length == 0">
+                                    Todavía no hay especificaciones ingresadas
+                                </p>
+                                <div class="btn-group col-md-12" role="group" aria-label="First group">
+                                    <button type="button" class="btn btn-secondary" (click)="manipularVector(0)">+</button>
+                                    <button type="button" class="btn btn-dark" (click)="eliminarEspecificaciones()">Eliminar</button>
+                                    <button type="button" class="btn btn-secondary" (click)="manipularVector(1)">-</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--Visualización de productos-->
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div *ngIf="modificar == 0" style="margin-top: 35px;">
+                <form class="was-validated">
+                    <div style="margin-bottom: 20px;" class="col-md-3">
+                        <select name="categoria" id="Fcategoria" class="custom-select" (click)="aplicarFiltros()" required #categoria>
+                            <option value="">Categoría</option>
+                            <option *ngFor="let categoria of categorias;">{{ categoria.nombre }}</option>                                    
+                        </select>
+                        <div class="invalid-feedback">Seleccione una categoría</div>
+                    </div>
+                </form>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Marca</th>
+                            <th scope="col">Categoría</th>
+                            <th scope="col">Existencia</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let producto of arregloProductos; let i = index;">
+                            <th scope="row"> {{i+1}}</th>
+                            <td>{{producto.nombre}}</td>
+                            <td>{{producto.marca.nombre}}</td>
+                            <td>{{producto.categoria.nombre}}</td>
+                            <td>{{producto.existencia}}</td>
+                            <td>
+                                <button id="btnmw {{i}}" type="button" class="btn botw" onclick="this.blur();" (click)="modificarValores(1); asignarValores(i)"><i class="fas fa-pen"></i></button>
+                                <button id="btnmt {{i}}" type="button" class="btn bott" onclick="this.blur();" (click)="posicionEliminar(i)" style="margin-left: 1px;" data-toggle="modal" data-target="#deleteModal"><i class="fas fa-trash-alt"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="paginacion">
+                    <ul>
+                        <li *ngFor="let numeroPagina of arregloPaginas;" (click)="aplicarFiltros(numeroPagina)">
+                            <a>{{numeroPagina}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div *ngIf="modificar == 1" style="margin-top: 35px;">
+                <div class="row" style="margin-bottom: 20px;">
+                    <div class="col-md-2">
+                        <button type="button" class="btnResponsive btn btn-dark" (click)="modificarValores(0)">Regresar</button>
+                    </div>
+                    <div class="col-md-10" style="text-align: center;">
+                        <h4>Modificación de: {{mcampos[0]}}</h4>
+                    </div>
+                </div>
+                <form id="Datos" class="was-validated">
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input [(ngModel)]="mcampos[0]" maxlength="45" name="producto" type="text" class="form-control" id="mproducto" placeholder="Nombre del producto" required #producto>
+                                <div class="invalid-feedback">Campo incompleto</div>
+                            </div>
+                            <div class="form-group">
+                                <textarea [(ngModel)]="mcampos[1]" rows=2 maxlength="200" name="descripcion" type="text" class="form-control" id="mdescripcion" placeholder="Descripción" required #descripcion></textarea>
+                                <div class="invalid-feedback">Campo incompleto</div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-6">
+                                    <select [(ngModel)]="mcampos[2]" name="marca" id="mmarca" class="custom-select" required #marca>
+                                        <option value=""> Marca</option>
+                                        <option *ngFor="let marca of marcas;">{{ marca.nombre }}</option>
+                                    </select>
+                                    <div class="invalid-feedback">Seleccione una marca</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <select [(ngModel)]="mcampos[3]" name="categoria" id="mcategoria" class="custom-select" required #categoria>
+                                        <option value="">Categoría</option>
+                                        <option *ngFor="let categoria of categorias;">{{ categoria.nombre }}</option>                                    
+                                    </select>
+                                    <div class="invalid-feedback">Seleccione una categoría</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input [(ngModel)]="mcampos[4]" name="precio" type="text" pattern="[0-9]+(\.[0-9][0-9]?)?" title="Ingrese sólo números (si usa decimales que sean 2 como máximo)" step="0.01" min="0" class="form-control" id="mprecioVenta" placeholder="Precio de venta (Q.)"
+                                    required #precio>
+                                <div class="invalid-feedback">Campo incompleto o mal llenado (use 2 decimales o enteros)</div>
+                            </div>
+                            <div class="form-group">
+                                <input [(ngModel)]="mcampos[5]" name="existencia" type="text" pattern="[0-9]*" min="0" class="form-control" id="mexistencia" placeholder="Existencia" required #existencia>
+                                <div class="invalid-feedback">Campo incompleto o mal llenado (use enteros solamente)</div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <div class="custom-control custom-radio">
+                                        <input *ngIf="mbanderaradio == 1" type="radio" class="custom-control-input" id="mdisponible" name="radio-stacked" value="Option1" (click)="mmanipularBRadio(1)" required checked>
+                                        <input *ngIf="mbanderaradio == 2" type="radio" class="custom-control-input" id="mdisponible" name="radio-stacked" value="Option3" (click)="mmanipularBRadio(1)" required>
+                                        <label class="custom-control-label" for="mdisponible">Disponible</label>
+                                        <div class="invalid-feedback">Seleccione la opción disponible o descontinuado</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <div class="custom-control custom-radio">
+                                        <input *ngIf="mbanderaradio == 1" type="radio" class="custom-control-input" id="mdescontinuado" name="radio-stacked" value="Option2" (click)="mmanipularBRadio(2)" required>
+                                        <input *ngIf="mbanderaradio == 2" type="radio" class="custom-control-input" id="mdescontinuado" name="radio-stacked" value="Option4" (click)="mmanipularBRadio(2)" required checked>
+                                        <label class="custom-control-label" for="mdescontinuado">Descontinuado</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <div class="form-group form-check">
+                                        <input *ngIf="mbooleano == true" name="descuento" type="checkbox" class="form-check-input" (click)="masignarValor()" id="mcbDescuento" #descuento checked>
+                                        <input *ngIf="mbooleano == false" name="descuento" type="checkbox" class="form-check-input" (click)="masignarValor()" id="mcbDescuento" #descuento>
+                                        <label class="form-check-label" for="exampleCheck1">En descuento</label>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input [(ngModel)]="mcampos[6]" name="inputDescuento" pattern="[0-9]{1,2}" *ngIf="mbooleano" id="minputDescuento" type="text" class="form-control" placeholder="% descuento" #inputDescuento required>
+                                    <div class="invalid-feedback">Ingrese un número de uno o dos dígitos</div>
+                                </div>
+                            </div>
+                            <button *ngIf="mespecificaciones.length > 0 && mbandera()" class="btn btn-secondary" (click)="modificarProducto()">Modificar producto</button>
+                        </div>
+                        <div class="col-md-3">
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row ">
+                                <div class="col-md-4 responsive-tarjetas">
+                                    <div class="card">
+                                        <img [src]="murls[0]" class="fijarTarjetas" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 responsive-tarjetas">
+                                    <div class="card">
+                                        <img [src]="murls[1]" class="fijarTarjetas" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 responsive-tarjetas">
+                                    <div class="card">
+                                        <img [src]="murls[2]" class="fijarTarjetas" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="margin-top: 15px;" class="form-group">
+                                <input type="file" accept=".png, .jpg, .jpeg" class="form-control-file" id="mimage" multiple (change)="mdetectFiles($event); masignarImagenes($event)">
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="form-group">
+                                <p>El botón para ingresar el producto se activa una vez que se ha ingresado una especificación ({{ mespecificaciones.length }} especificaciones) y ningún campo esté con marco rojo.
+                                </p>
+                                <div class="form-group row">
+                                    <div class="col-md-10">
+                                        <input pattern="[0-9a-zA-ZÀ-ÿ\s\u00f1\u00d1:.;!#$%&/()=?¡¿/*+>_-]*" title="Ingrese letras, números y SOLO los caracteres especiales especificados: :.;!#$%&/()=?¡¿/*-+>_ (no ingrese comas, importante)" class="form-control especificacion" id="mespecificacion"
+                                            placeholder="Especificación" #especificacion>
+                                        <div class="invalid-feedback">Campo incompleto</div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="button" class="btn btn-dark" (click)="mobtenerEspecificacion()">Agregar</button>
+                                    </div>
+                                </div>
+                                <p *ngIf="mespecificaciones.length > 0">
+                                    Especificación {{mindiceEspecificaciones + 1}}: <br> {{ mespecificaciones[mindiceEspecificaciones]}}
+                                </p>
+                                <p *ngIf="mespecificaciones.length == 0">
+                                    Todavía no hay especificaciones ingresadas
+                                </p>
+                                <div class="btn-group col-md-12" role="group" aria-label="First group">
+                                    <button type="button" class="btn btn-secondary" (click)="mmanipularVector(0)">+</button>
+                                    <button type="button" class="btn btn-dark" (click)="meliminarEspecificaciones()">Eliminar</button>
+                                    <button type="button" class="btn btn-secondary" (click)="mmanipularVector(1)">-</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 *ngIf="modificar == 0" class="modal-title" id="exampleModalLongTitle">Se ha ingresado el producto con éxito</h5>
+                <h5 *ngIf="modificar == 1" class="modal-title" id="exampleModalLongTitle">Se ha modificado el producto con éxito</h5>
+                <button type="button" class="close" (click)="refrescarPagina()" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="refrescarPagina()" data-dismiss="modal">Continuar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">¿Está seguro de eliminar el producto seleccionado?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" (click)="eliminarProducto();" data-dismiss="modal" data-toggle="modal" data-target="#modalEliminado">Continuar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalEliminado" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Se ha eliminado el producto con éxito</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="refrescarPagina()" data-dismiss="modal">Continuar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>

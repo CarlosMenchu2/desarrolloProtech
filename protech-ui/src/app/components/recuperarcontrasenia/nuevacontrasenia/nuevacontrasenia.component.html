@@ -1,0 +1,37 @@
+<div class="formulario-correo">
+  <form action="" [formGroup]="formPassword">
+    <div class="form-group">
+      <h3>Nueva Contraseña</h3>
+      <input type="password" class="form-control" formControlName="contrasenia"  placeholder="Ingrese la nueva contraseña" [ngClass]="formPassword.get('contrasenia').touched ? (formPassword.controls['contrasenia'].invalid ? 'is-invalid':'is-valid'):'' ">
+      <div *ngIf="formPassword.get('contrasenia').errors &&  formPassword.get('contrasenia').touched" >
+        <!-- <small *ngIf="formPassword.get('contrasenia').hasError('required')" class="text-danger">Campo requerido</small> -->
+      </div>
+      <div class="validaciones">
+        <p [ngClass]="formPassword.get('contrasenia').touched ? (formPassword.controls['contrasenia'].hasError('required') || formPassword.controls['contrasenia'].hasError('minlength') ? 'text-danger' :'text-success' ) : ''  ">
+          Minimo 8 caracteres
+        </p>
+        <p [ngClass]="formPassword.get('contrasenia').touched ? (formPassword.controls['contrasenia'].hasError('required') || formPassword.controls['contrasenia'].hasError('hasNumber') ? 'text-danger' :'text-success' ) : ''  ">
+          Debe contener al menos un numero
+        </p>
+        <p [ngClass]="formPassword.get('contrasenia').touched ? (formPassword.controls['contrasenia'].hasError('required') || formPassword.controls['contrasenia'].hasError('hasCapitalCase') ? 'text-danger' :'text-success' ) : ''  ">
+          Debe contener al menos una letra Mayuscula
+        </p>
+        <p [ngClass]="formPassword.get('contrasenia').touched ? (formPassword.controls['contrasenia'].hasError('required') || formPassword.controls['contrasenia'].hasError('hasSmallCase') ? 'text-danger' :'text-success' ) : ''  " >
+          Debe contener al menos una letra Minuscula
+        </p>
+        <p [ngClass]="formPassword.get('contrasenia').touched ? (formPassword.controls['contrasenia'].hasError('required') || formPassword.controls['contrasenia'].hasError('hasSpecialCharacters') ? 'text-danger' :'text-success' ) : ''  " >
+          Debe contener al menos un caracter especial !@#$%^&*()_+\-=
+        </p>
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control" formControlName="validarContrasenia" placeholder="Confirme la contraseña" [ngClass]="formPassword.get('validarContrasenia').touched ? (formPassword.controls['validarContrasenia'].invalid ? 'is-invalid':'is-valid'):'' ">
+      <div *ngIf="formPassword.get('validarContrasenia').errors && formPassword.get('validarContrasenia').touched">
+        <small *ngIf="formPassword.get('validarContrasenia').hasError('required')" class="text-danger"> Campo Requerido</small>
+        <small *ngIf="formPassword.get('validarContrasenia').hasError('NoPassswordMatch')" class="text-danger">Las contraseñas no coinciden</small>
+      </div>
+    </div>
+    <button class="btn btn-btnsave" (click)="enviarNuevaContrasenia()">Confirmar</button>
+  </form>
+</div>
+

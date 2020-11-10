@@ -1,0 +1,144 @@
+/* .landing {
+  position: relative;
+  width: 100%;
+  height: 65vh;
+  display: table;
+  z-index: -1;
+  margin: 0;
+}
+
+.home-wrap {
+  clip: rect(0, auto, auto, 0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.home-inner {
+  position: fixed;
+  display: table;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 75%;
+  background-image: url(src/assets/computers.png);
+  background-size: cover;
+  background-position: center center;
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+  will-change: transform;
+}
+
+.caption {
+  width: 100%;
+  max-width: 100%;
+  position: absolute;
+  top: 25%;
+  z-index: 1;
+  color: white;
+  text-transform: uppercase;
+}
+
+.caption h1 {
+  font-size: 3.8rem;
+  font-weight: 700;
+  letter-spacing: .3rem;
+  text-shadow: .1rem, .1rem, 0.8rem, black;
+  padding-bottom: 1rem;
+
+}
+
+.caption h3 {
+  font-style: 2rem;
+  font-weight: 700;
+  letter-spacing: .3rem;
+} */
+
+/* Baner */
+.img-container {
+  background-image: url(src/assets/computers.png);
+  height:60vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.inner-container{
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  color: white;
+  height: auto;
+}
+
+.inner-container h1{
+  margin-top: 180px;
+  font-size: 7em;
+  letter-spacing: 1rem;
+}
+
+.inner-container h3{
+  margin-top: 30px;
+  letter-spacing: 0.2rem;
+}
+
+
+.img_content {
+  margin-top: 100px;
+  margin-bottom: 50px;
+  padding-top: 20px;
+  padding-bottom: 30px;
+
+}
+
+.img_content-items{
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.img_content-items img{
+  width:  150px;
+  height: 150px;
+}
+
+
+@media  screen and (max-width: 900px){
+  .caption{
+    margin-top: 100px;
+  }
+
+  .landing{
+    height: 50vh;
+  }
+
+  .inner-container h1{
+    margin-top: 100px;
+  }
+}
+
+@media  screen and (max-width: 590px){
+ .caption h3 {
+   font-style: 1rem;
+   font-size: 1rem;
+ }
+
+ .img_content-items{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .img_content-items img {
+    margin-top: 20px;
+  }
+}
+
+@media  screen and (max-width: 590px){
+  .inner-container h1{
+    margin-top: 75px;
+    font-size: 3em;
+  }
+
+}

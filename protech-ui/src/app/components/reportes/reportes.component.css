@@ -1,0 +1,61 @@
+.cuadro {
+    height: 400px;
+    width: 450px;
+}
+
+.centrado {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.inp {
+    width: 180px;
+    background-color: rgba(255, 255, 255, .7);
+    display: inline;
+}
+
+.boton {
+    margin-left: 5px;
+    background-color: #1A2A40;
+    color: #ffffff;
+}
+
+.boton:hover {
+    background-color: #35537a;
+    color: #ffffff;
+}
+
+body {
+    font-size: .875rem;
+}
+
+.feather {
+    width: 16px;
+    height: 16px;
+    vertical-align: text-bottom;
+}
+
+.izquierda {
+    margin-left: 0;
+    padding-left: 0;
+    width: 100%;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.esquerda {
+    padding-left: 45px;
+}
+
+
+/*
+   * Content
+   */
+
+[role="main"] {
+    padding-top: 48px;
+    /* Space for fixed navbar */
+}

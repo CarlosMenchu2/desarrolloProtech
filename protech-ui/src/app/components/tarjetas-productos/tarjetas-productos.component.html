@@ -1,0 +1,11 @@
+<div class="card">
+    <p class="marca-item"> {{ producto.marca.nombre }}</p>
+    <img [src]="obtenerImagen()" class="card-img-top">
+    <div class="card-body">
+        <h5 class="card-title"><b>{{ producto.nombre }}</b></h5>
+        <p class="precio-item"> {{producto.precio | currency:'Q '}}</p>
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-color btn-lg" [routerLink]="['/detalle', producto.id]" type="button" name="button"> Ver detalles </button>
+        </div>
+    </div>
+</div>

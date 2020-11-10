@@ -1,0 +1,15 @@
+<div class="formulario-correo">
+  <form action="" [formGroup]="formCorreo">
+    <div class="form-group">
+      <h3>Restrablecimiento de contraseña</h3>
+      <h6>Ingrese el correo electrónico con el que esta registrado y le enviaremos un link para actualizar una contraseña nueva</h6>
+      <input type="email" class="form-control" formControlName="correo"  placeholder="Ingrese su correo">
+      <div *ngIf="formCorreo.get('correo').errors &&  formCorreo.get('correo').touched" >
+        <small *ngIf="formCorreo.get('correo').hasError('required')" class="text-danger">Campo requerido</small>
+        <small *ngIf="formCorreo.get('correo').hasError('email')" class="text-danger">Ingrese un correo valido</small>
+      </div>
+    </div>
+    <small *ngIf="!correoValido" class="txt-danger">El correo no esta asociado a una cuenta</small>
+    <button class="btn btn-btnsave" (click)="enviarCorreo()">Enviar</button>
+  </form>
+</div>

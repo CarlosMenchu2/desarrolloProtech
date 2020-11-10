@@ -1,0 +1,54 @@
+<div id="carouselExampleIndicators" class="carousel slide slider" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="assets/img/slider1.png" class="d-block w-100" alt="protech">
+    </div>
+    <div class="carousel-item">
+      <img src="assets/img/slider2.png" class="d-block w-100" alt="protech">
+    </div>
+    <div class="carousel-item">
+      <img src="assets/img/slider1.png" class="d-block w-100" alt="protech">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+<div class="container">
+  <div>
+    <h3 class="productos-sugeridos">Productos Sugeridos</h3>
+    <div class="row">
+      <div class="col-sm-4 d-flex justify-content-center" *ngFor="let producto of arregloproductos1; let i = index">
+        <app-tarjetas-productos  [producto]="producto" [index]="i"></app-tarjetas-productos>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 d-flex justify-content-center">
+        <div class="image-container">
+          <img src="assets/img/consolas.png"  class="img-fluid" alt="consola">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="image-container d-flex justify-content-center">
+          <img src="assets/img/consolas.png"  class="img-fluid" alt="consola">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4" *ngFor="let producto of arregloproductos2; let i = index">
+        <app-tarjetas-productos  [producto]="producto" [index]="i"></app-tarjetas-productos>
+      </div>
+    </div>
+    <!-- <app-tarjetas-productos  [producto]="producto" [index]="i" *ngFor="let producto of arregloproductos2; let i = index"></app-tarjetas-productos> -->
+  </div>
+</div>

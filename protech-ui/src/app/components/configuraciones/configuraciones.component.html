@@ -1,0 +1,238 @@
+<!doctype html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/fontawesome.min.css">
+</head>
+
+
+<body>
+    <h2 align="center" class="colorGray">
+        <img src="assets/img/configuraciones.png" alt="" width="50px" height="50px" style="margin-top: -5px;"> Configuraciones
+        <img src="assets/img/Componente 20 – 1@2x.png" alt="" height="60px" style="margin-top: -5px;">
+    </h2>
+    <hr>
+
+    <div class="container">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active colorGray" id="categoria-tab" data-toggle="tab" href="#categoria" role="tab" aria-controls="categoria" aria-selected="true">
+                    <img src="assets/img/inventory.png" alt="" width="20px" height="20px" style="margin-top: -5px;"> Categorías
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link colorGray" id="marca-tab" data-toggle="tab" href="#marca" role="tab" aria-controls="marca" aria-selected="false">
+                    <img src="assets/img/branding.png" alt="" width="20px" height="20px" style="margin-top: -5px;"> Marcas
+                </a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content colorGray">
+            <div id="categoria" class="tab-pane fade show active" role="tabpanel" aria-labelledby="categoria-tab"><br>
+                <div class="disp-form">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="categoriatxt" placeholder="Nombre Categoría" pattern="[a-zA-ZñÑ.'-]{1,25}" style="max-width: 250px;" title="Solo se permiten letras o los caracteres .-' " required>
+                        </div>
+                        <button id="btnCategoria" type="button" class="btn boton" style="max-width: 250px;" onclick="this.blur();">Insertar Categoría</button>
+                    </form>
+                </div>
+                <div class="colorGray disp-table">
+                    Categorías existentes
+                    <div class="table-responsive padd1">
+                        <table class="table table-hover" style="border: 1px solid rgba(112, 112, 112, .3)">
+                            <thead class="thead colorGray" style="text-align: center;">
+                                <tr>
+                                    <th scope="col">No.</th>
+                                    <th class="tab-left" scope="col">Categoría</th>
+                                    <th class="tab-left" scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let categoria of categorias; let i = index;">
+                                    <td class="colorGray">
+                                        {{i + 1}}
+                                    </td>
+                                    <td class="colorGray tab-left">
+                                        <input class="in colorGray" type="text" id="cat{{i}}" placeholder="{{categoria.nombre}}" pattern="[a-zA-ZñÑ.'-]{1,25}" style="max-width: 250px; border: transparent;" title="Solo se permiten letras o los caracteres .-' ">
+                                    </td>
+                                    <td class="colorGray tab-left">
+                                        <button id="btncU {{i}}" type="button" class="btn botw" onclick="this.blur();" (click)="msgValidationCat(i)"><i class="fas fa-pen"></i></button>
+                                        <button id="btncE {{i}}" type="button" class="btn bott" onclick="this.blur();" (click)="setCategoria(i)" style="margin-left: 1px;" data-toggle="modal" data-target="#deleteCategoria"><i class="fas fa-trash-alt"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div id="marca" class="tab-pane fade" role="tabpanel" aria-labelledby="marca-tab"> <br>
+                <div class="disp-form">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="marcatxt" placeholder="Nombre Marca" pattern="[a-zA-ZñÑ.'-]{1,25}" style="max-width: 250px;" title="Solo se permiten letras o los caracteres .-' " required>
+                        </div>
+                        <button id="btnMarca" type="button" class="btn boton" style="max-width: 250px;" onclick="this.blur();">Insertar Marca</button>
+                    </form>
+                </div>
+                <div class="colorGray disp-table">
+                    Marcas existentes
+                    <div class="table-responsive padd1">
+                        <table class="table table-hover" style="border: 1px solid rgba(112, 112, 112, .3)">
+                            <thead class="thead colorGray" style="text-align: center;">
+                                <tr>
+                                    <th scope="col">No.</th>
+                                    <th class="tab-left" scope="col">Marca</th>
+                                    <th class="tab-left" scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let marca of marcas; let i = index;">
+                                    <td class="colorGray">
+                                        {{i + 1}}
+                                    </td>
+                                    <td class="colorGray tab-left">
+                                        <input class="in colorGray" type="text" id="mar{{i}}" placeholder="{{marca.nombre}}" pattern="[a-zA-ZñÑ.'-]{1,25}" style="max-width: 250px; border: transparent;" title="Solo se permiten letras o los caracteres .-' ">
+                                    </td>
+                                    <td class="colorGray tab-left">
+                                        <button id="btnmw {{i}}" type="button" class="btn botw" onclick="this.blur();" (click)="msgValidationMarc(i)"><i class="fas fa-pen"></i></button>
+                                        <button id="btnmt {{i}}" type="button" class="btn bott" onclick="this.blur();" (click)="setMarca(i)" style="margin-left: 1px;" data-toggle="modal" data-target="#deleteMarca"><i class="fas fa-trash-alt"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mensaje para agregar -->
+    <div class="modal fade" id="submitCategoria" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="submitC">¿Desea agregar esta categoría?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn boton" data-dismiss="modal" (click)="addCategoria()" id="subCat">Continuar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="submitMarca" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="submitM">¿Desea agregar esta Marca?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn boton" data-dismiss="modal" (click)="addMarca()">Continuar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Mensaje eliminación -->
+    <div class="modal fade" id="deleteCategoria" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteC">¿Desea eliminar esta categoría?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn boton" data-dismiss="modal" (click)="delCategoria()">Continuar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="deleteMarca" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteM">¿Desea eliminar esta Marca?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn boton" data-dismiss="modal" (click)="delMarca()">Continuar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mensaje para modificar -->
+    <div class="modal fade" id="updCategoria" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updC">¿Desea modificar esta categoría?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn boton" data-dismiss="modal" (click)="updCategoria()">Continuar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="updMarca" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updM">¿Desea modificar esta Marca?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn boton" data-dismiss="modal" (click)="updMarca()">Continuar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mensaje error -->
+    <div class="modal fade" id="error" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title colorGray" id="errorAll"> <strong>No se puede realizar la acción</strong> </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="colorGray">- La caja está vacía</p>
+                    <p class="colorGray">- Solo se permiten letras o los caracteres: -.'</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
+
+</html>

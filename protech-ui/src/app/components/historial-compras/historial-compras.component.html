@@ -1,0 +1,84 @@
+<div class="container-fluid" style="margin-bottom: 60px;">
+    <div class="row">
+        <div class="container-fluid" class="col-4" style="margin-left: 60px;">
+          <h3 style="background-color: #1a2a40; color: white; text-align: center; margin-top: 60px;">Historial del cliente</h3> 
+          
+          
+            <button class="factura"  *ngFor="let factura of HistorialCompras" (click)="getBoton(factura.idcompra)">
+              Identificador de compra: {{factura.idcompra}} 
+              <br> Fecha de compra: {{factura.fechacompra}} 
+              <br> Total de compra: {{factura.total}}
+            </button>
+
+        </div>
+        <div class="container-fluid" class="col-7" style="margin-top: 60px;">
+
+            <table class="table table-hover">
+                <thead style="background-color: #1a2a40; color: white;">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Fecha</th>
+                        <th>TOTAL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>{{InfoFactura.nombre}}</th>
+                        <th>{{InfoFactura.fecha}}</th>
+                        <th>Q.{{InfoFactura.total}}</th>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-hover">
+                <thead style="background-color: #1a2a40; color: white;">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Descripción</th>
+                      <th scope="col">Cantidad</th>
+                      <th scope="col">Descuento</th>
+                      <th scope="col">Precio</th>
+                      <th scope="col">Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let DetalleProducto of DetalleProductos">
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>{{DetalleProducto.descripcion}} </td>
+                      <td>{{DetalleProducto.cantidad}}</td>
+                      <td>{{DetalleProducto.descuento}}</td>
+                      <td>Q.{{DetalleProducto.precio}}</td>
+                      <td>Q.{{DetalleProducto.subtotal}}.</td>
+                    </tr>  
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <th>TOTAL</th>
+                    <td>Q.{{total}}.00</td>
+                  </tr>
+                </tfoot>
+            </table>
+            <table class="table table-hover">
+              <thead  style="background-color: #1a2a40; color: white;">
+                <tr>
+                  <th> Direccion </th>
+                  <th> Anotacion </th>
+                  <th> Metodo De Pago</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{DetalleEnvio.direccion}}</td>
+                  <td>{{DetalleEnvio.anotacion}}</td>
+                  <td>{{DetalleEnvio.metodoenvio}}</td>
+                </tr>
+              </tbody>
+            </table> 
+        </div>
+
+    </div>
+</div>

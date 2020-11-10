@@ -1,0 +1,166 @@
+<div class="container">
+    <div class="row" style="margin-top: 50px; margin-bottom: 50px;">
+
+        <div class="col-7">
+            <h3>Detalles de envio</h3><br>
+            <label for="InputNombre">Nombre</label>
+            <input [(ngModel)]="nombreenvio" type="text" class="form-control" id="InputNombre" placeholder="Ingrese su nombre" required><br>
+
+            <label for="InputTelefono">Telefono</label>
+            <input [(ngModel)]="telefonoenvio" type="number" class="form-control" id="InputTelefono" placeholder="Ingrese su Telefono/Celular"
+                required><br>
+
+            <label for="InputNit">Nit</label>
+            <input [(ngModel)]="nitenvio" type="number" class="form-control" id="InputNit"
+                placeholder="Ingrese su Nit, si no cuenta con uno coloque C/F" required><br>
+
+            <label for="InputEmail">Correo electronico</label>
+            <input [(ngModel)]="emailenvio" type="email" class="form-control" id="InputEmail" placeholder="Ingrese su correo electronico"
+                required><br>
+
+            <label for="InputDireccion">Direccion</label>
+            <input [(ngModel)]="direccionenvio" type="text" class="form-control" id="InputDireccion" placeholder="Ingrese su direccion" required><br>
+
+            <label for="InputDepartamento">Departamento</label>
+            <select [(ngModel)]="departamentoenvio" id="InputDepartamento" class="form-control" placeholder="Seleccione un departamento" required><br>
+                <option selected value="Alta Verapaz"> Alta Verapaz</option>
+                <option selected value="Baja Verapaz"> Baja Verapaz</option>
+                <option selected value="Chimaltenango"> Chimaltenango</option>
+                <option selected value="Chiquimula"> Chiquimula</option>
+                <option selected value="Petén"> Petén</option>
+                <option selected value="El Progreso"> El Progreso</option>
+                <option selected value="Quiché"> Quiché</option>
+                <option selected value="Escuintla"> Escuintla</option>
+                <option selected value="Guatemala"> Guatemala</option>
+                <option selected value="Huehuetenango"> Huehuetenango</option>
+                <option selected value="Izabal"> Izabal</option>
+                <option selected value="Jalapa"> Jalapa</option>
+                <option selected value="Jutiapa"> Jutiapa</option>
+                <option selected value="Quetzaltenango"> Quetzaltenango</option>
+                <option selected value="Retalhuleu"> Retalhuleu</option>
+                <option selected value="Sacatepéquez"> Sacatepéquez</option>
+                <option selected value="San Marcos"> San Marcos</option>
+                <option selected value="Santa Rosa"> Santa Rosa</option>
+                <option selected value="Sololá"> Sololá</option>
+                <option selected value="Suchitepéquez"> Suchitepéquez</option>
+                <option selected value="Totonicapán"> Totonicapán</option>
+                <option selected value="Zacapa"> Zacapa</option>
+
+            </select><br>
+
+            <label for="InputNota">Nota</label>
+            <textarea [(ngModel)]="notaenvio" class="form-control" name="Nota" id="InputNota" rows="3"
+                placeholder="Anotaciones para entrega"></textarea><br>
+
+
+        </div>
+
+        <div class="col-5" style="background-color:rgb(26, 42,64);">
+            <div class="blanco">
+                <h3 style="align-content: center;">Orden</h3>
+                <table class="table table-sm" style="background-color: azure; border-radius: 10px;">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">SubTotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let producto of detalleproductos">
+                            <td>{{producto.nombre}}</td>
+                            <td>{{producto.cantidad}}</td>
+                            <td>Q.{{producto.precio}}.00</td>
+                            <td>Q.{{producto.subtotal}}.00</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th scoop="col">Total</th>
+                            <td> </td>
+                            <td> </td>
+                            <td>Q.{{t}}.00</td>
+                        </tr>
+                    </tfoot>
+
+                </table>
+            </div>
+            <div style="margin-top: 50px;" class="blanco">
+                <h3>Metodo de pago</h3>
+
+                <select style="margin-top: 30px;" class="form-control" name="MetodoPago" id="InputMetodoPago" [(ngModel)]="metodo">
+                    <option selected value="PAGO CONTRA ENTREGA">Pago Contra Entrega</option>
+                </select>
+
+            </div>
+
+            <div class="botones">
+                <button class="btn btn-primary btn-lg btn-block" type="submit" (click)="mostrarModalConf()" > Confirmar Compra </button>
+                <button class="btn btn-outline-danger btn-lg btn-block" type="BotonCancelar" (click)="prevlocation()" >Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #myModalConf let-modal>
+
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Confirmación</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.close('Cerrado desde la ventana')"> 
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+            ¿Esta seguro de realizar la compra? 
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modal.close('No')">No</button>
+            <button type="button" class="btn btn-primary"  (click)="modal.close('Si')" >Si</button>
+          </div>
+        </div>
+    </ng-template>
+
+    <ng-template #myModalCierre let-modal>
+
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">COMPRA EXITOSA</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.close('Cerrado desde la ventana')"> 
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+            ¡LA COMPRA SE REALIZO CON EXITO!
+                !GRACIAS POR PREFERIRNOS!
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="homelocation()" (click)="modal.close('gracias')" >¡GRACIAS!</button>
+          </div>
+        </div>
+    </ng-template>
+</div>
+
+
+<script>
+
+
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>

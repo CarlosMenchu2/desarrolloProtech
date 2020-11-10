@@ -1,0 +1,102 @@
+.botw {
+    background-color: #ffffff;
+    border: 1px solid #1A2A40;
+}
+
+.botw:hover {
+    background-color: #1A2A40;
+    color: #ffffff;
+}
+
+.fa-pen {
+    color: #1A2A40;
+}
+
+.botw:hover .fa-pen {
+    color: #ffffff;
+}
+
+.bott {
+    background-color: #ffffff;
+    border: 1px solid #d9534f;
+}
+
+.bott:hover {
+    background-color: #d9534f;
+    color: #ffffff;
+}
+
+.fa-trash-alt {
+    color: #d9534f;
+}
+
+.bott:hover .fa-trash-alt {
+    color: #ffffff;
+}
+
+.centrar {
+    width: 83%;
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 60px;
+}
+
+.paginacion ul {
+    list-style: none;
+    text-align: center;
+}
+
+.paginacion ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.paginacion ul li a {
+    display: block;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #1A2A40;
+}
+
+.paginacion {
+    margin: 20px;
+}
+
+.negro {
+    color: black;
+}
+
+a.active.nav-link {
+    background-color: #1A2A40!important;
+    color: white;
+}
+
+
+/*Ingreso de productos*/
+
+.fijarTarjetas {
+    width: 100%;
+    object-fit: cover;
+}
+
+.fijarInventario {
+    width: 60%;
+}
+
+.fijarMarco {
+    width: 100%;
+}
+
+@media (max-width: 760px) {
+    .responsive-tarjetas {
+        width: 33%;
+        margin-bottom: 30px;
+    }
+    .especificacion {
+        margin-bottom: 20px;
+    }
+    h4 {
+        margin-top: 20px;
+    }
+}

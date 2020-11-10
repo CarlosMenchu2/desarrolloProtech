@@ -1,0 +1,155 @@
+<!-- <div class="modal-header">
+  <h4 class="modal-title">Registro</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form action="">
+    <div class="form-group">
+      <label for="nombre">Nombre *</label>
+      <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre">
+    </div>
+    <div class="form-group">
+      <label for="email">Correo Electronico *</label>
+      <input type="email" class="form-control" id="email" placeholder="Ingrese su correo">
+    </div>
+    <div class="form-group">
+      <label for="telefono">Telefono *</label>
+      <input type="text" class="form-control" id="telefono" placeholder="Ingrese su telefono">
+    </div>
+    <div class="form-group">
+      <label for="direccion">Direccion *</label>
+      <input type="text" class="form-control" id="direccion" placeholder="Ingrese su direccion">
+    </div>
+    <div class="form-group">
+      <label for="nit">Nit</label>
+      <input type="text" class="form-control" id="nit" placeholder="Ingrese su nit">
+    </div>
+    <div class="form-group">
+      <label for="usuario">Usuario *</label>
+      <input type="text" class="form-control" id="usuario" placeholder="Ingrese su usuario">
+    </div>
+    <div class="form-group">
+      <label for="password1">Contraseña *</label>
+     <input type="password" class="form-control" id="password1" placeholder="Ingrese su contraseña">
+    </div>
+    <div class="form-group">
+      <label for="password2">Confirmar Contraseña</label>
+     <input type="password" class="form-control" id="password2" placeholder="Confirme su contraseña">
+    </div>
+  </form>
+  <small id="emailHelp" class="form-text text-muted"> * Campos obligatorios</small>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-danger" (click)="activeModal.close('Close click')">Cancelar</button>
+  <button type="button" class="btn btn-btnsave">Registrarse</button>
+</div> -->
+
+
+<div class="modal-header">
+  <h4 class="modal-title">Registro</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <ul ngbNav #nav="ngbNav" [(activeId)]="active" [destroyOnHide]="false" class="nav-tabs nav-fill">
+    <li [ngbNavItem]="1">
+      <a ngbNavLink>Credenciales</a>
+      <ng-template ngbNavContent>
+       <form  action="" [formGroup]="formCredenciales">
+        <div class="form-group">
+          <label for="usuario" [ngClass]="(formCredenciales.get('usuario').touched &&formCredenciales.controls['usuario'].errors) ? 'text-danger':''">Usuario *</label>
+          <input type="text" class="form-control" id="usuario" placeholder="Ingrese su usuario" formControlName="usuario" [ngClass]="formCredenciales.get('usuario').touched ? (formCredenciales.controls['usuario'].invalid ? 'is-invalid':'is-valid'):'' ">
+          <div *ngIf="formCredenciales.get('usuario').errors && formCredenciales.get('usuario').touched">
+            <small *ngIf="formCredenciales.get('usuario').hasError('required')" class="text-danger"> Campo Requerido</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password1" [ngClass]="(formCredenciales.get('contrasenia').touched &&formCredenciales.controls['contrasenia'].errors) ? 'text-danger':''">Contraseña *</label>
+          <input type="password" class="form-control" id="password1" placeholder="Ingrese su contraseña" formControlName="contrasenia" [ngClass]="formCredenciales.get('contrasenia').touched ? (formCredenciales.controls['contrasenia'].invalid ? 'is-invalid':'is-valid'):'' " >
+          <!------------------- Validaciones ------------------------------->
+          <div class="validaciones">
+            <p [ngClass]="formCredenciales.get('contrasenia').touched ? (formCredenciales.controls['contrasenia'].hasError('required') || formCredenciales.controls['contrasenia'].hasError('minlength') ? 'text-danger' :'text-success' ) : ''  ">
+              Minimo 8 caracteres
+            </p>
+            <p [ngClass]="formCredenciales.get('contrasenia').touched ? (formCredenciales.controls['contrasenia'].hasError('required') || formCredenciales.controls['contrasenia'].hasError('hasNumber') ? 'text-danger' :'text-success' ) : ''  ">
+              Debe contener al menos un numero
+            </p>
+            <p [ngClass]="formCredenciales.get('contrasenia').touched ? (formCredenciales.controls['contrasenia'].hasError('required') || formCredenciales.controls['contrasenia'].hasError('hasCapitalCase') ? 'text-danger' :'text-success' ) : ''  ">
+              Debe contener al menos una letra Mayuscula
+            </p>
+            <p [ngClass]="formCredenciales.get('contrasenia').touched ? (formCredenciales.controls['contrasenia'].hasError('required') || formCredenciales.controls['contrasenia'].hasError('hasSmallCase') ? 'text-danger' :'text-success' ) : ''  " >
+              Debe contener al menos una letra Minuscula
+            </p>
+            <p [ngClass]="formCredenciales.get('contrasenia').touched ? (formCredenciales.controls['contrasenia'].hasError('required') || formCredenciales.controls['contrasenia'].hasError('hasSpecialCharacters') ? 'text-danger' :'text-success' ) : ''  " >
+              Debe contener al menos un caracter especial !@#$%^&*()_+\-=
+            </p>
+          </div>
+        <!-- ----------------------------------------------------------------------- -->
+        </div>
+        <div class="form-group">
+          <label for="password2">Confirmar Contraseña *</label>
+          <input type="password" class="form-control" id="password2" placeholder="Confirme su contraseña" formControlName="validarContrasenia" [ngClass]="formCredenciales.get('validarContrasenia').touched ? (formCredenciales.controls['validarContrasenia'].invalid ? 'is-invalid':'is-valid'):'' ">
+          <div *ngIf="formCredenciales.get('validarContrasenia').errors && formCredenciales.get('validarContrasenia').touched">
+            <small *ngIf="formCredenciales.get('validarContrasenia').hasError('required')" class="text-danger"> Campo Requerido</small>
+            <small *ngIf="formCredenciales.get('validarContrasenia').hasError('NoPassswordMatch')" class="text-danger">Las contraseñas no coinciden</small>
+          </div>
+        </div>
+       </form>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="2">
+      <a ngbNavLink>Datos Personales</a>
+      <ng-template ngbNavContent>
+        <form action="" [formGroup]="formDatos">
+          <div class="form-group">
+            <label for="nombre" [ngClass]="(formDatos.get('nombre').touched &&formDatos.controls['nombre'].errors) ? 'text-danger':''">Nombre *</label>
+            <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre" formControlName="nombre" [ngClass]="formDatos.get('nombre').touched ? (formDatos.controls['nombre'].invalid ? 'is-invalid':'is-valid'):'' ">
+            <div *ngIf="formDatos.get('nombre').errors && formDatos.get('nombre').touched">
+              <small *ngIf="formDatos.get('nombre').hasError('required')" class="text-danger">Campo requerido</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email" [ngClass]="(formDatos.get('correo').touched &&formDatos.controls['correo'].errors) ? 'text-danger':''">Correo Electronico *</label>
+            <input type="email" class="form-control" id="email" placeholder="Ingrese su correo" formControlName="correo" [ngClass]="formDatos.get('correo').touched ? (formDatos.controls['correo'].invalid ? 'is-invalid':'is-valid'):'' ">
+            <div *ngIf="formDatos.get('correo').errors && formDatos.get('correo').touched">
+              <small *ngIf="formDatos.get('correo').hasError('required')" class="text-danger">Campo requerido</small>
+              <small *ngIf="formDatos.get('correo').hasError('email')" class="text-danger">Ingrese un correo valido</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="telefono" [ngClass]="(formDatos.get('telefono').touched &&formDatos.controls['telefono'].errors) ? 'text-danger':''">Telefono *</label>
+            <input type="text" class="form-control" id="telefono" placeholder="Ingrese su telefono" formControlName="telefono" [ngClass]="formDatos.get('telefono').touched ? (formDatos.controls['telefono'].invalid ? 'is-invalid':'is-valid'):'' ">
+            <div *ngIf="formDatos.get('telefono').errors && formDatos.get('telefono').touched">
+              <small *ngIf="formDatos.get('telefono').hasError('required')" class="text-danger">Campo requerido</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="direccion" [ngClass]="(formDatos.get('direccion').touched &&formDatos.controls['direccion'].errors) ? 'text-danger':''">Direccion *</label>
+            <input type="text" class="form-control" id="direccion" placeholder="Ingrese su direccion" formControlName="direccion" [ngClass]="formDatos.get('direccion').touched ? (formDatos.controls['direccion'].invalid ? 'is-invalid':'is-valid'):'' ">
+            <div *ngIf="formDatos.get('direccion').errors && formDatos.get('direccion').touched">
+              <small *ngIf="formDatos.get('direccion').hasError('required')" class="text-danger">Campo requerido</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="nit" [ngClass]="(formDatos.get('nit').touched &&formDatos.controls['nit'].errors) ? 'text-danger':''">Nit</label>
+            <input type="text" class="form-control" id="nit" placeholder="Ingrese su nit" formControlName="nit" [ngClass]="formDatos.get('nit').touched ? (formDatos.controls['nit'].invalid ? 'is-invalid':'is-valid'):'' ">
+            <div *ngIf="formDatos.get('nit').errors && formDatos.get('nit').touched">
+              <small *ngIf="formDatos.get('nit').hasError('required')" class="text-danger">Campo requerido</small>
+            </div>
+          </div>
+        </form>
+      </ng-template>
+    </li>
+  </ul>
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+  <small id="emailHelp" class="form-text text-muted"> * Campos obligatorios</small>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-danger" (click)="activeModal.close('Close click')">Cancelar</button>
+  <button type="button" class="btn btn-btnsave"  (click)="registrarUsuario()" >Registrarse</button>
+</div>
+
+
